@@ -29,7 +29,7 @@ class Ship:
         #update teh ship's x value, not the rect.
         if self.moving_right and self.rect.right < self.screen_rect.right:
             self.x +=self.settings.ship_speed
-        if self.moving_left and self.rect.left >0:
+        if self.moving_left and self.rect.left
             self.x -= self.settings.ship_speed
         #update rect object from self.x
         self.rect.x = self.x 
@@ -37,3 +37,9 @@ class Ship:
     def blitme(self):
         #draw the ship at its current location
         self.screen.blit(self.image, self.rect)
+
+    def center_ship(self):
+        #center the ship on the scree
+        self.rect.midbottom = self.screen_rect.midtbottom
+        self.x = float(self.rect.x)
+        
