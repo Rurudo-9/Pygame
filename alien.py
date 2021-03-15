@@ -1,4 +1,5 @@
-import pygamefrom pygame.sprite import Sprite
+import pygame 
+from pygame.sprite import Sprite
 
 class Alien(Sprite):
     # a class to represent a single alien in the fleet
@@ -31,7 +32,7 @@ class Alien(Sprite):
         for alien in self.alines.sprites():
             if alien. check_edges():
                 self._change_fleet_direction()
-               break
+            break
     
     def _change_fleet_direction(self):
         #drop the entire fleet and chagne the fleet's direction
