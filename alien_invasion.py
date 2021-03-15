@@ -3,6 +3,7 @@ from time import sleep
 import pygame   
 from settings import Settings
 from game_stats import GameStats
+from button import Button
 from scoreboard import Scoreboard
 from ship import Ship
 from bullet import Bullet
@@ -61,12 +62,12 @@ class AlienInvasion:
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                mosue_pos = pygame.mouse.get_pos()
+                mouse_pos = pygame.mouse.get_pos()
                 self._check_play_button(mouse_pos)
     
     def _check_play_button(self,mouse_pos):
         # start a new game when the player clicks play
-        button_cliced = self.play_button.rect.collidepoint(mouse_pos)
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked and not self.stats.game_active:
             self.stats.reset_stats() 
             self.stats.game_active = True
@@ -76,8 +77,8 @@ class AlienInvasion:
             self.settings.initialize_dynamic_settings()
             
             # get rid of any remaining aliens and bulllets
-            self.alines.empty()
-            sel.fbullets.empty()
+            self.aliens.empty()
+            self.bullets.empty()
 
             #create a new fleet and center the ship
             self._create_fleet()
@@ -172,7 +173,7 @@ class AlienInvasion:
         # create an alien and palce it in the row
         alien = Alien(self)
         alien_width, alien_height  = alien.rect.size
-        alien.x - allien_width + 2 * alien_width * alien_number
+        alien.x = alien_width + 2 * alien_width * alien_number
         alien.rect.x = alien.x
         alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
         self.aliens.add(alien)
